@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhupesh Nepal </title>
+    <link rel="stylesheet" href="1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/backdrop-filter/1.0.0/backdrop-filter.min.css">
+    <style>
+    .contact-item {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 25px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: 90%;
+        margin-left: auto;
+    }
+
+    .contact-item:hover {
+        transform: translateX(5px);
+    }
+
+    .contact-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 1rem;
+        color: #333;
+    }
+
+    .contact-text {
+        font-size: 1.1rem;
+    }
+
+    .contact-text a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .contact-text p {
+        margin: 0;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        background: #000;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .social-icon svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+    }
+
+    .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Optional: Add hover effect */
+    .social-icon:hover svg {
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    .contact-subtitle {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .contact-text a:hover {
+        color: #007bff;
+    }
+
+    /* Contact Information Container */
+    .contact-info {
+        padding-left: 3rem; /* Add left padding to move items right */
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 25px; /* Increased horizontal padding */
+        border-radius: 10px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: 90%; /* Slightly reduce width to prevent overflow */
+        margin-left: auto; /* Push items to the right */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .contact-info {
+            padding-left: 1rem; /* Less padding on mobile */
+        }
+        
+        .contact-item {
+            width: 100%; /* Full width on mobile */
+            padding: 15px 20px;
+        }
+    }
+
+    /* Form Validation Styles */
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+
+    .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+
+    .form-control.is-invalid ~ .invalid-feedback {
+        display: block;
+    }
+
+    /* Toast Notification Styles */
+    #toastContainer {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .toast {
+        padding: 15px 25px;
+        margin: 10px;
+        border-radius: 4px;
+        color: white;
+        animation: slideIn 0.3s ease-in-out;
+    }
+
+    .toast.error {
+        background-color: #dc3545;
+    }
+
+    .toast.success {
+        background-color: #28a745;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Project Card Styles - With Subtle Hover */
+    .project-card {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        background: white;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .project-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .project-content {
+        padding: 20px;
+        background: white;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        color: #666;
+    }
+
+    .project-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .project-link {
+        padding: 8px 15px;
+        background: #000;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .project-link:hover {
+        opacity: 0.9;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px; /* Height of your fixed navbar */
+    }
+    </style>
+</head>
+<body>
+    <!-- navbar  -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-2" href="#home">
+                <span class="text-primary">Bhupesh</span> Nepal
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link mx-3 nav-item" href="#home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">HOME</a>
+                    <a class="nav-link mx-3 nav-item" href="#about" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">ABOUT</a>
+                    <a class="nav-link mx-3 nav-item" href="#services" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">SERVICES</a>
+                    <a class="nav-link mx-3 nav-item" href="#skills" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">SKILLS</a>
+                    <a class="nav-link mx-3 nav-item" href="#projects" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">PROJECTS</a>
+                    <a class="nav-link mx-3 nav-item" href="#contact" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <!-- Background image -->
+        <img src="protofile.jpeg" alt="Profile Background" class="hero-background">
+        
+        <div class="hero-content">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="introduction">
+                            <div class="hero-text">
+                                <div class="hi-container">
+                                    <h1 class="display-4 fw-bold mb-3">Hi,</h1>
+                                    <div class="profile-image-wrapper">
+                                        <img src="doremon.jpg" alt="Doraemon Profile" class="profile-emoji">
+                                    </div>
+                                </div>
+                                <h2 class="display-5 fw-bold mb-3">I'm Bhupeshraj Nepal</h2>
+                                <h3 class="h4 mb-4">Web Developer & Designer</h3>
+                            </div>
+                            <p class="hero-description">
+                                A web developer with experience in HTML, CSS, JS,
+                                PHP, Laravel, MySQL and many more.
+                            </p>
+                            <div class="d-flex gap-3">
+                                <a href="your-cv.pdf" class="download-cv">
+                                    Download CV
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About/Who Am I Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="about-image">
+                        <img src="IMG_8308 copy.jpg" alt="Bhupeshraj Nepal" class="about-profile-img">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="about-content">
+                        <h3 class="about-subtitle">ABOUT ME</h3>
+                        <h2 class="about-title">WHO AM I?</h2>
+                        <p class="about-description">
+                        
+
+                        
+                          
+                          I am a passionate web developer skilled in HTML, CSS (including Bootstrap and Tailwind), JavaScript, and PHP with Laravel. I specialize in crafting responsive and dynamic websites, leveraging modern frameworks and tools to deliver user-friendly and efficient solutions. With a focus on clean code and innovative design, I aim to create web experiences that leave a lasting impression.
+                        </p>
+                        <div class="about-cta">
+                            <h3 class="mb-4">Let's build something amazing together.</h3>
+                            <a href="#contact" class="hire-me-btn">
+                                HIRE ME <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title">WHAT I DO?</h2>
+            
+            <p class="services-intro">
+                I create beautiful and functional websites that help businesses thrive in the digital world.
+            </p>
+
+            <div class="row g-4">
+                <!-- Web Development -->
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Web Development" class="service-image">
+                        <h3 class="service-title">Website Development</h3>
+                        <div class="service-content">
+                            <div class="service-description">
+                                <p>I build fast, secure, and user-friendly websites that work perfectly on all devices. Whether you need a simple business website or a complex e-commerce platform, I'll create a solution that helps your business grow online.</p>
+                            </div>
+                            <div class="service-details hidden">
+                                <p>I specialize in creating responsive websites using modern technologies like HTML5, CSS3, and JavaScript. My development process ensures your site is fast-loading and SEO-friendly.</p>
+                                
+                                <p>Using PHP with Laravel, I build robust backend systems that can handle everything from simple contact forms to complex e-commerce solutions. Your data is secured with industry-standard protection.</p>
+                                
+                                <p>Every website I develop is optimized for performance across all devices. I implement responsive design principles and ensure your site loads quickly and efficiently.</p>
+                                
+                                <p>For online stores, I integrate secure payment gateways and inventory management systems. Your e-commerce site will provide a smooth shopping experience for your customers.</p>
+                            </div>
+                            <button class="read-more-btn" onclick="toggleDetails(this, 'dev')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Design -->
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" alt="Web Design" class="service-image">
+                        <h3 class="service-title">Web Design</h3>
+                        <div class="service-content">
+                            <div class="service-description">
+                                <p>I design modern and engaging websites that capture your brand's essence. My designs focus on creating memorable user experiences while ensuring your message reaches your target audience effectively.</p>
+                            </div>
+                            <div class="service-details hidden">
+                                <p>My design process starts with understanding your brand identity. I create clean, intuitive layouts that reflect your brand's values and resonate with your target audience.</p>
+                                
+                                <p>I implement modern design trends while maintaining a focus on usability. Your website will feature smooth animations and interactive elements that enhance user engagement.</p>
+                                
+                                <p>Every design is crafted with careful attention to visual hierarchy, ensuring your key messages and call-to-actions stand out and drive conversions.</p>
+                                
+                                <p>I prioritize user experience in every design decision, creating intuitive navigation and ensuring accessibility across all user groups.</p>
+                            </div>
+                            <button class="read-more-btn" onclick="toggleDetails(this, 'design')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="section-title">MY SKILLS</h2>
+            <div class="skills-list">
+                <div class="skill">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="skill-name">HTML</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="skill-name">CSS (Bootstrap & Tailwind)</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="skill-name">PHP with Laravel</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="skill-name">Web Development</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">My Projects</h2>
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="project1.jpg" class="project-img" alt="Project 1">
+                        <div class="project-content">
+                            <h3 class="project-title">Project Name</h3>
+                            <p class="project-description">A brief description of the project and the technologies used.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link" target="_blank">View Project</a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">GET IN TOUCH</h2>
+            <h3 class="contact-subtitle text-center mb-5">CONTACT</h3>
+            
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-md-6">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" id="fullName">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="subject..">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5"></textarea>
+                            <div class="invalid-feedback">Please enter your message</div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <!-- Email -->
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <div class="contact-text">
+                                <a href="mailto:bhupeshnepal58@gmail.com">bhupeshnepal58@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div class="contact-text">
+                                <p>Kamal-6,jhapa,Nepal</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <div class="contact-text">
+                                <p>+977 981-6933687</p>
+                                
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="contact-item">
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                            <div class="contact-text">
+                                <p>+977 981-6933687</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links text-center mt-5">
+                <div class="social-icons">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/bhupesh.nepal.79" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/bhupesh___0/" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                        </svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/your-profile" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/9816933687" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="mt-4">© 2024 Copyright: bhupeshnepal.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all hire me buttons
+        const hireMeButtons = document.querySelectorAll('.hire-me-btn');
+        const contactSection = document.getElementById('contact');
+
+        hireMeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Smooth scroll is handled by CSS, we just need to add highlight effect
+                setTimeout(() => {
+                    contactSection.classList.add('highlight-section');
+                    // Remove the highlight class after animation completes
+                    setTimeout(() => {
+                        contactSection.classList.remove('highlight-section');
+                    }, 1500);
+                }, 500); // Wait for scroll to complete
+            });
+        });
+    });
+
+    function toggleDetails(button) {
+        const card = button.closest('.service-card');
+        const details = card.querySelector('.service-details');
+        const isHidden = details.classList.contains('hidden');
+        
+        details.classList.toggle('hidden');
+        button.textContent = isHidden ? 'Show Less' : 'View Services';
+        
+        if (isHidden) {
+            details.style.maxHeight = details.scrollHeight + "px";
+        } else {
+            details.style.maxHeight = "0";
+        }
+    }
+
+    // Form validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form fields
+        const name = document.getElementById('fullName');
+        const email = document.getElementById('email');
+        const subject = document.getElementById('subject');
+        const message = document.getElementById('message');
+        
+        // Reset previous error states
+        [name, email, subject, message].forEach(field => {
+            field.classList.remove('is-invalid');
+        });
+        
+        let isValid = true;
+        
+        // Validate each field
+        if (!name.value.trim()) {
+            name.classList.add('is-invalid');
+            showToast('Please enter your name');
+            isValid = false;
+        }
+        
+        if (!email.value.trim()) {
+            email.classList.add('is-invalid');
+            showToast('Please enter your email');
+            isValid = false;
+        } else if (!isValidEmail(email.value.trim())) {
+            email.classList.add('is-invalid');
+            showToast('Please enter a valid email address');
+            isValid = false;
+        }
+        
+        if (!subject.value.trim()) {
+            subject.classList.add('is-invalid');
+            showToast('Please enter a subject');
+            isValid = false;
+        }
+        
+        if (!message.value.trim()) {
+            message.classList.add('is-invalid');
+            showToast('Please enter your message');
+            isValid = false;
+        }
+        
+        // If form is valid, you can submit it
+        if (isValid) {
+            showToast('Message sent successfully!', 'success');
+            this.reset();
+        }
+    });
+
+    // Email validation helper
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // Toast notification function
+    function showToast(message, type = 'error') {
+        // Create toast container if it doesn't exist
+        let toastContainer = document.getElementById('toastContainer');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.id = 'toastContainer';
+            document.body.appendChild(toastContainer);
+        }
+        
+        // Create toast
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        
+        // Add toast to container
+        toastContainer.appendChild(toast);
+        
+        // Remove toast after 3 seconds
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get the target section id from href
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Smooth scroll to target section
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Add highlight animation
+                    setTimeout(() => {
+                        // Remove highlight class from all sections first
+                        document.querySelectorAll('section').forEach(section => {
+                            section.classList.remove('section-highlight');
+                        });
+                        
+                        // Add highlight class to target section
+                        targetSection.classList.add('section-highlight');
+                        
+                        // Remove highlight class after animation
+                        setTimeout(() => {
+                            targetSection.classList.remove('section-highlight');
+                        }, 1000);
+                    }, 500); // Wait for scroll to complete
+                }
+            });
+        });
+
+        // Keep existing scroll spy functionality
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+    </script>
+
+    <style>
+    /* Add these styles to your existing CSS */
+    .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link.active {
+        color: #007bff !important;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: #007bff;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+    @media (max-width: 991px) {
+        .nav-link::after {
+            display: none;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-radius: 5px;
+        }
+    }
+
+    /* Toast Styles */
+    #toastContainer {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .toast {
+        padding: 12px 24px;
+        margin: 8px;
+        border-radius: 4px;
+        color: white;
+        font-size: 14px;
+        animation: slideIn 0.3s ease-in-out;
+    }
+
+    .toast.error {
+        background-color: #dc3545;
+    }
+
+    .toast.success {
+        background-color: #28a745;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Form validation styles */
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+    </style>
+</body>
+</html>
