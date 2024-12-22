@@ -243,6 +243,101 @@
         scroll-behavior: smooth;
         scroll-padding-top: 80px; /* Height of your fixed navbar */
     }
+
+    /* Enhanced Download Button Styles */
+    .download-cv {
+        display: inline-flex;
+        align-items: center;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white !important;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .download-cv:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
+        transition: 0.5s;
+    }
+
+    .download-cv:hover {
+        background: linear-gradient(135deg, #0056b3, #004094);
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        text-decoration: none;
+    }
+
+    .download-cv:hover:before {
+        left: 100%;
+    }
+
+    .download-cv i {
+        margin-left: 10px;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+
+    .download-cv:hover i {
+        transform: translateX(3px);
+    }
+
+    /* Optional: Add animation for the icon */
+    @keyframes bounce {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(3px); }
+    }
+
+    .download-cv:hover i {
+        animation: bounce 1s infinite;
+    }
+
+    /* Add/Update Hero Section Styles */
+    .hero-section {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: -1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        padding-top: 80px; /* Adjust based on your navbar height */
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
     </style>
 </head>
 <body>
@@ -295,12 +390,8 @@
                                 PHP, Laravel, MySQL and many more.
                             </p>
                             <div class="d-flex gap-3">
-<<<<<<< HEAD
-                                <a href="Bhupesh_Nepal_CV.pdf.pdf" class="download-cv">
-=======
-                                <a href="Bhupesh_Nepal_CV.pdf" class="download-cv">
->>>>>>> 4ab212a1a78e2d2c33f2a05cf13a59f8b279e4de
-                                    Download CV
+                                <a href="Bhupesh_Nepal_CV.pdf" class="download-cv" download>
+                                    Download CV <i class="fas fa-download ms-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -578,7 +669,7 @@
                         </svg>
                     </a>
                     <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/your-profile" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/bhupeshraj-nepal-7501a7340/" class="social-icon" target="_blank" rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                             <rect x="2" y="9" width="4" height="12"/>
@@ -592,7 +683,7 @@
                         </svg>
                     </a>
                 </div>
-                <p class="mt-4">© 2024 Copyright: bhupeshnepal.com</p>
+                <p class="mt-4">© 2024 Copyright: bhupeshnepal.com.np</p>
             </div>
         </div>
     </section>
